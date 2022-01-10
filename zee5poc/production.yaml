@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  namespace: default
+  namespace: argocd
   name: zee5poc
   labels:
     app: zee5poc
@@ -13,15 +13,15 @@ metadata:
     argocd-image-updater.argoproj.io/write-back-method: git:secret:default/git-creds
     argocd-image-updater.argoproj.io/git-branch: main
 spec:
-  project:  zee5poc
+  project:  default
 
 
-  source: 
-    repoURL: https://github.com/Zee5-PoC/zee5-k8s-poc.git
+  source:
+    repoURL: https://github.com/kushalacc/manifest.git
     targetRevision: HEAD
     path: zee5poc
 
-  destination: 
+  destination:
     server: https://kubernetes.default.svc
     namespace: default
 
